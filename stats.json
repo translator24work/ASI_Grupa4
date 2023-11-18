@@ -1,0 +1,1 @@
+{"universities": {"rows": 2200, "columns": 14, "file_size": 188584}, "preprocessed_universities": {"rows": 2200, "columns": 14, "file_size": 80465}, "model_input_table": {"rows": 2200, "columns": 14, "file_size": 80465}, "X_train": {"rows": 330, "columns": 9}, "X_test": {"rows": 330, "columns": 9}}
