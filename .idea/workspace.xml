@@ -2,25 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdc3d20f-ed35-4895-91ed-598cbdea830d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Sprint 2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/.idea/Sprint 2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/data/cwurData.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/src/data_loading.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/src/data_preprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/src/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/src/model_evaluation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/src/model_training.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint 2/src/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint_1/cwurData.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint_1/sprint1.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/conf/base/parameters.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/conf/base/parameters.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_processing/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_processing/nodes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_processing/pipeline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_science/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_science/nodes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_science/pipeline.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -49,6 +50,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\KEDRO-ASI\kedro-asi\data\01_raw" />
       <recent name="C:\KEDRO-ASI" />
     </key>
   </component>
@@ -61,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701623481792</updated>
       <workItem from="1701623484540" duration="734000" />
-      <workItem from="1701624227826" duration="2393000" />
+      <workItem from="1701624227826" duration="11316000" />
     </task>
     <servers />
   </component>

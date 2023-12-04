@@ -1,14 +1,2 @@
-model_options:
-  test_size: 0.15
-  train_size: 0.15
-  random_state: 3
-  features:
-    - national_rank
-    - quality_of_education
-    - alumni_employment
-    - quality_of_faculty
-    - publications
-    - patents
-    - score
-    - citations
-    - influence
+path: data/01_raw/cwurData.csv
+url: 'https://raw.githubusercontent.com/translator24work/ASI_Grupa4/main/Sprint%202/data/cwurData.csv'
