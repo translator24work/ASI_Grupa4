@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import download_data_from_url, save_data_to_file, read_data, read_file
+from .nodes import read_data
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -8,15 +8,9 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=read_data,
-                inputs=["url", "path"],
+                inputs=["params:url", "params:path"],
                 outputs=None,
                 name="read_data"
-            ),
-            node(
-                func=read_file,
-                inputs=["path"],
-                outputs=["df"],
-                name="read_file"
             )
         ]
     )
