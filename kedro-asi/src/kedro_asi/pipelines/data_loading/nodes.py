@@ -8,7 +8,7 @@ def save_data_to_file(df, path):
     df.to_csv(path, index=False)
 
 
-def read_data(url, path):
+def read_data(url, path) -> pd.DataFrame:
     df = pd.read_csv(url)
     save_data_to_file(df, path)
     return df

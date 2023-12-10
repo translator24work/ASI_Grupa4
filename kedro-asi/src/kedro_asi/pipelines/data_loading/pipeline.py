@@ -9,7 +9,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=read_data,
                 inputs=["params:url", "params:path"],
-                outputs=None,
+                outputs="df",
                 name="read_data"
             )
         ]
