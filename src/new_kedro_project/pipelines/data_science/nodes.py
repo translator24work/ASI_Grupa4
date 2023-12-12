@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
+import wandb
 
 
 def split_data(data: pd.DataFrame, parameters: Dict) -> Tuple:
@@ -26,7 +27,12 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> LinearRegression:
 
 
 def init_wandb():
-    print('test')
+    print('init wandb')
+    wandb.init()
+
+
+def close_wandb():
+    wandb.finish()
 
 
 def evaluate_model(

@@ -1,11 +1,17 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import evaluate_model, split_data, train_model
+from .nodes import evaluate_model, split_data, train_model, init_wandb, close_wandb
 
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
         [
+            node(
+                func=init_wandb,
+                inputs=None,
+                outputs=None,
+                name="init_wandb_node",
+            ),
             node(
                 func=split_data,
                 inputs=["model_input_table", "params:model_options"],
@@ -23,6 +29,12 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs=["regressor", "X_test", "y_test"],
                 outputs="score",
                 name="evaluate_model_node",
+            ),
+            node(
+                func=close_wandb,
+                inputs=None,
+                outputs=None,
+                name="close_wandb_node",
             ),
         ]
     )
