@@ -1,49 +1,41 @@
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OneHotEncoder
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
 
 
-def preprocess_data(df):
-    # Usunięcie rekordów zawierających brakujące wartości w kolumnie 'broad_impact'
-    df = df.dropna(subset=['broad_impact'])
+def handle_missing_values(universities: pd.DataFrame) -> pd.DataFrame:
+    universities = universities.drop(columns=['broad_impact'])
+    return universities.dropna()
 
-    # Normalizacja danych numerycznych (np. numerycznych kolumn od 0 do 10)
-    numerical_cols = df.columns[0:11]  # Załóżmy, że kolumny od 0 do 10 są numeryczne
+
+def normalize_numerical_data(universities: pd.DataFrame) -> pd.DataFrame:
+    numerical_cols = ['score', 'patents', 'year', 'citations', 'publications',
+                      'influence', 'quality_of_faculty', 'alumni_employment', 'alumni_employment',
+                      'quality_of_education', 'national_rank']
+
     scaler = StandardScaler()
-    df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
+    universities[numerical_cols] = scaler.fit_transform(universities[numerical_cols])
 
-    # Inne operacje przetwarzania danych można dodać tutaj
-    # ...
-
-    return df
-
-
-def encode_categorical_data(X_train, X_val, X_test, categorical_cols):
-    # Inicjalizacja obiektu kodowania gorących jednostek
-    encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
-
-    # Dopasowanie i przekształcenie danych tekstowych za pomocą kodowania gorących jednostek
-    X_train_encoded = encoder.fit_transform(X_train[categorical_cols])
-    X_val_encoded = encoder.transform(X_val[categorical_cols])
-    X_test_encoded = encoder.transform(X_test[categorical_cols])
-
-    X_train_numeric = X_train.drop(categorical_cols, axis=1)
-    X_val_numeric = X_val.drop(categorical_cols, axis=1)
-    X_test_numeric = X_test.drop(categorical_cols, axis=1)
-
-    # Połączenie przekształconych danych z kodowaniem gorących jednostek z danymi numerycznymi
-    X_train_final = np.hstack((X_train_encoded, X_train_numeric))
-    X_val_final = np.hstack((X_val_encoded, X_val_numeric))
-    X_test_final = np.hstack((X_test_encoded, X_test_numeric))
-
-    return X_train_final, X_val_final, X_test_final
+    imputer = SimpleImputer(strategy='mean')
+    universities[numerical_cols] = imputer.fit_transform(universities[numerical_cols])
+    return universities
 
 
-def prepare_data(X_train_numeric, X_val_numeric, X_test_numeric, X_train_final, X_val_final, X_test_final, y_train,
-                 y_val, y_test):
-    # Przygotowanie danych do modelu
-    X_train = np.hstack((X_train_numeric, X_train_final))
-    X_val = np.hstack((X_val_numeric, X_val_final))
-    X_test = np.hstack((X_test_numeric, X_test_final))
+def encode_categorical_data(universities: pd.DataFrame) -> pd.DataFrame:
+    categorical_cols = ['country', 'institution']
+    encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
+    encoded = encoder.fit_transform(universities[categorical_cols])
+    universities = universities.drop(categorical_cols, axis=1)
+    universities = pd.concat([universities, pd.DataFrame(encoded)], axis=1)
+    return universities
 
-    return X_train, X_val, X_test, y_train, y_val, y_test
+
+def split_data(universities: pd.DataFrame, test_size: float, random_state: int) -> [pd.DataFrame, pd.DataFrame,
+                                                                                    pd.DataFrame]:
+    universities.columns = universities.columns.astype(str)
+    X = universities.drop('world_rank', axis=1)
+    y = universities['world_rank']
+    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
+    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.15, random_state=42)
+    return X_train, X_val, X_test, y_train, y_test
