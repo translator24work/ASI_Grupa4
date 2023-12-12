@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 from typing import Dict, Tuple
 
 import pandas as pd
@@ -28,7 +29,8 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> LinearRegression:
 
 def init_wandb():
     print('init wandb')
-    wandb.init()
+    current_timestamp = datetime.today().strftime("%Y_%m_%d_%H_%M_%S")
+    wandb.init(project="wandb_asi", name=f'run_{current_timestamp}')
 
 
 def close_wandb():
@@ -42,4 +44,6 @@ def evaluate_model(
     score = r2_score(y_test, y_pred)
     logger = logging.getLogger(__name__)
     logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
+    wandb.log({"r2_score": score})
+    close_wandb()
     return score
