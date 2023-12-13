@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
+from typing import Dict, Tuple
 
 
 def handle_missing_values(universities: pd.DataFrame) -> pd.DataFrame:
@@ -31,11 +32,11 @@ def encode_categorical_data(universities: pd.DataFrame) -> pd.DataFrame:
     return universities
 
 
-def split_data(universities: pd.DataFrame, test_size: float, random_state: int) -> [pd.DataFrame, pd.DataFrame,
-                                                                                    pd.DataFrame]:
+def split_data(universities: pd.DataFrame, parameters: Dict) -> Tuple:
     universities.columns = universities.columns.astype(str)
     X = universities.drop('world_rank', axis=1)
     y = universities['world_rank']
-    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
-    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.15, random_state=42)
-    return X_train, X_val, X_test, y_train, y_test
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=parameters["test_size"],
+                                                        train_size=parameters["train_size"],
+                                                        random_state=parameters["random_state"])
+    return X_train, X_test, y_train, y_test

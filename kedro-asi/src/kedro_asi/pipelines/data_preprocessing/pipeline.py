@@ -26,8 +26,8 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=split_data,
-                inputs=["universities_encoded", "params:model_options.test_size", "params:model_options.random_state"],
-                outputs=["X_train", "X_val", "X_test", "y_train", "y_test"],
+                inputs=["universities_encoded", "params:model_options"],
+                outputs=["X_train", "X_test", "y_train", "y_test"],
                 name="split_data"
             )
         ]
