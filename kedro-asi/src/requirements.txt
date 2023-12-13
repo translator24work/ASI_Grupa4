@@ -20,3 +20,4 @@ pandas
 scikit-learn
 numpy
 pyarrow
+autogluon

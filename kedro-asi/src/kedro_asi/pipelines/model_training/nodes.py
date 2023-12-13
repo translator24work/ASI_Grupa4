@@ -2,16 +2,10 @@ import pandas as pd
 import logging
 
 import wandb
-from sklearn.linear_model import LinearRegression
+from autogluon.tabular import TabularPredictor
 from datetime import datetime
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error, mean_absolute_percentage_error
-
-
-def train_model(X_train: pd.DataFrame, y_train: pd.DataFrame) -> LinearRegression:
-    init_wandb()
-    regressor = LinearRegression()
-    regressor.fit(X_train, y_train)
-    return regressor
+from sklearn.model_selection import train_test_split
 
 
 def init_wandb():
@@ -23,8 +17,14 @@ def close_wandb():
     wandb.finish()
 
 
-def evaluate_model(regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series):
-    y_pred = regressor.predict(X_test)
+def evaluate_model(universities: pd.DataFrame):
+    init_wandb()
+
+    x_train, x_test = train_test_split(universities)
+    predictor = TabularPredictor(label='world_rank').fit(pd.DataFrame(x_train))
+
+    y_test = predictor.predict(x_train)
+    y_pred = predictor.predict(x_test)
     logger = logging.getLogger(__name__)
 
     r2_value = r2_score(y_test, y_pred)
@@ -40,8 +40,8 @@ def evaluate_model(regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd
     logger.info("Model has MAPE of %.3f on test data.", mape_value)
 
     # Feature importance
-    importance_list = regressor.coef_
-    importance_df = pd.DataFrame({'feature': X_test.columns, 'importance': importance_list})
+    importance_list = predictor.coef_
+    importance_df = pd.DataFrame({'feature': x_test.columns, 'importance': importance_list})
     logger.info(f"Model importance {importance_df}")
 
     wandb.log({
