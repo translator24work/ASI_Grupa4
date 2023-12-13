@@ -55,13 +55,20 @@ def evaluate_model(
     logger.info("Model has MAE of %.1f on test data.", mae_value)
     logger.info("Model has MAPE of %.3f on test data.", mape_value)
 
+    # Feature importance
+    importance_list = regressor.coef_
+    importance_df = pd.DataFrame({'feature': X_test.columns, 'importance': importance_list})
+    logger.info(f"Model importance {importance_df}")
+
     wandb.log({
-        "r2": r2_value,
-        "mse": mse_value,
-        "rmse": rmse_value,
-        "mae": mae_value,
-        "mape": mape_value,
+        "importance": importance_df,
     })
+
+    wandb.run.summary["r2"] = r2_value
+    wandb.run.summary["mse"] = mse_value
+    wandb.run.summary["rmse"] = rmse_value
+    wandb.run.summary["mae"] = mae_value
+    wandb.run.summary["mape"] = mape_value
 
     close_wandb()
     return r2_value, mse_value, rmse_value, mae_value, mape_value
