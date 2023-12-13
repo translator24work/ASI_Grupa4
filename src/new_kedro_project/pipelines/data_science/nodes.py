@@ -4,7 +4,7 @@ from typing import Dict, Tuple
 
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error, mean_absolute_percentage_error
 from sklearn.model_selection import train_test_split
 import wandb
 
@@ -41,9 +41,27 @@ def evaluate_model(
         regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series
 ):
     y_pred = regressor.predict(X_test)
-    score = r2_score(y_test, y_pred)
     logger = logging.getLogger(__name__)
-    logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
-    wandb.log({"r2_score": score})
+
+    r2_value = r2_score(y_test, y_pred)
+    mse_value = mean_squared_error(y_test, y_pred, squared=True)
+    rmse_value = mean_squared_error(y_test, y_pred, squared=False)
+    mae_value = mean_absolute_error(y_test, y_pred)
+    mape_value = mean_absolute_percentage_error(y_test, y_pred)
+
+    logger.info("Model has R^2 of %.3f on test data.", r2_value)
+    logger.info("Model has MSE of %.1f on test data.", mse_value)
+    logger.info("Model has RMSE of %.1f on test data.", rmse_value)
+    logger.info("Model has MAE of %.1f on test data.", mae_value)
+    logger.info("Model has MAPE of %.3f on test data.", mape_value)
+
+    wandb.log({
+        "r2": r2_value,
+        "mse": mse_value,
+        "rmse": rmse_value,
+        "mae": mae_value,
+        "mape": mape_value,
+    })
+
     close_wandb()
-    return score
+    return r2_value, mse_value, rmse_value, mae_value, mape_value
