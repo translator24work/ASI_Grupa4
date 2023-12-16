@@ -3,13 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="fdc3d20f-ed35-4895-91ed-598cbdea830d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/conf/base/catalog.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/conf/base/catalog.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kedro-asi/conf/base/parameters.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/conf/base/parameters.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_processing/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_processing/nodes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_processing/pipeline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_science/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_science/nodes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_science/pipeline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_loading/nodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_loading/nodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_loading/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/data_loading/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/src/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/src/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint4" />
+        <entry key="$PROJECT_DIR$" value="sprint5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,14 +39,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/KEDRO-ASI&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/KEDRO-ASI",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\KEDRO-ASI\kedro-asi\data\01_raw" />
@@ -64,6 +64,7 @@
       <updated>1701623481792</updated>
       <workItem from="1701623484540" duration="734000" />
       <workItem from="1701624227826" duration="11316000" />
+      <workItem from="1702762333605" duration="2988000" />
     </task>
     <servers />
   </component>

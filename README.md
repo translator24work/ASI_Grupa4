@@ -14,8 +14,41 @@ conda activate kedro-environment
 cd kedro-asi/
 pip install -r src/requirements.txt
 ```
-* Run first kedro pipeline separately:
+* Install postgresql on your machine:
 ```
-kedro run --pipeline data_loading
+https://www.postgresql.org/download/
 ```
-If it works, now you are free to use pipeline :)
+* Define database, schema and table that will contain our data. Below is sql script that will create table (replace *your_schema* with your schema name):
+```
+-- Table: your_schema.cwur
+
+-- DROP TABLE IF EXISTS your_schema.cwur;
+
+CREATE TABLE IF NOT EXISTS your_schema.cwur
+(
+    world_rank integer,
+    institution character varying COLLATE pg_catalog."default",
+    country character varying COLLATE pg_catalog."default",
+    national_rank integer,
+    quality_of_education integer,
+    alumni_employment integer,
+    quality_of_faculty integer,
+    publications integer,
+    influence integer,
+    citations integer,
+    broad_impact double precision,
+    patents integer,
+    score double precision,
+    year integer
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS your_schema.cwur
+    OWNER to postgres;
+```
+* After that we can insert data from csv file into sql table (replace *your_table* with your table name and */path/to/your/file.csv* with path to your local cwurData.csv):
+```
+COPY your_table FROM '/path/to/your/file.csv' DELIMITER ',' CSV HEADER;
+```
+## Now you should be fine to use your pipeline :)
