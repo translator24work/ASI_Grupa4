@@ -1,6 +1,3 @@
-url: 'https://raw.githubusercontent.com/arnaudbenard/university-ranking/master/cwurData.csv'
-path: 'data/01_raw/cwurData.csv'
-
 model_options:
   test_size: 0.15
   train_size: 0.15

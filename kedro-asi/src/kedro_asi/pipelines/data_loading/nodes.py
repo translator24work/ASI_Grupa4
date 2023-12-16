@@ -1,14 +1,18 @@
 import pandas as pd
-import os
+from sqlalchemy import create_engine
+from kedro.config import ConfigLoader
 
 
-def save_data_to_file(df, path):
-    if not os.path.exists("data"):
-        os.makedirs("data")
-    df.to_csv(path, index=False)
+def load_data_from_postgresql() -> pd.DataFrame:
+    conf_loader = ConfigLoader("conf")
+    credentials = conf_loader.get("local*", "credentials*", "credentials*/**")
+    db_credentials = credentials['my_postgres_db']
 
+    engine = create_engine(
+        f'postgresql://{db_credentials["username"]}:{db_credentials["password"]}@{db_credentials["host"]}:{db_credentials["port"]}/{db_credentials["database"]}')
 
-def read_data(url, path) -> pd.DataFrame:
-    df = pd.read_csv(url)
-    save_data_to_file(df, path)
-    return df
+    sql_query = 'SELECT * FROM cwur.cwur'
+
+    universities = pd.read_sql_query(sql_query, engine)
+
+    return universities

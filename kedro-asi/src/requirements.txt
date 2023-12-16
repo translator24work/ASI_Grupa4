@@ -21,3 +21,4 @@ scikit-learn
 numpy
 pyarrow
 autogluon
+psycopg2-binary
