@@ -3,18 +3,6 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-#universities:
-#  type: pandas.CSVDataset
-#  filepath: data/01_raw/cwurData.csv
-
-#preprocessed_universities:
-#  type: pandas.ParquetDataset
-#  filepath: data/02_intermediate/preprocessed_universities.pq
-#
-#model_input_table:
-#  type: pandas.ParquetDataset
-#  filepath: data/03_primary/model_input_table.pq
-
 regressor:
   type: pickle.PickleDataset
   filepath: data/06_models/regressor.pickle
