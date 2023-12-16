@@ -51,4 +51,14 @@ ALTER TABLE IF EXISTS your_schema.cwur
 ```
 COPY your_table FROM '/path/to/your/file.csv' DELIMITER ',' CSV HEADER;
 ```
+* Now you need to place in `kedro-asi/conf/local/credentials.yml` (replace `your_username`, `your_password`, `your_database` with your proper postgresql configuration):
+```
+my_postgres_db:
+  type: postgres
+  host: localhost
+  port: 5432
+  username: your_username
+  password: your_password
+  database: your_database
+```
 ## Now you should be fine to use your pipeline :)
