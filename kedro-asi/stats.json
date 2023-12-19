@@ -1,1 +1,1 @@
-{"universities": {"rows": 2200, "columns": 14, "file_size": 188472}, "universities_clean": {"rows": 2200, "columns": 13}, "df": {"rows": 2200, "columns": 14}, "universities_normalized": {"rows": 2200, "columns": 13}, "universities_encoded": {"rows": 2200, "columns": 1094}, "X_train": {"rows": 330, "columns": 1093}, "X_test": {"rows": 330, "columns": 1093}}
+{"universities": {"rows": 2200, "columns": 14}}

@@ -20,13 +20,22 @@ def close_wandb():
 def evaluate_model(universities: pd.DataFrame):
     init_wandb()
 
-    x_train, x_test = train_test_split(universities)
-    predictor = TabularPredictor(label='world_rank').fit(pd.DataFrame(x_train))
+    # Split data into features (x) and target (y)
+    x = universities.drop(columns=['world_rank'])
+    y = universities['world_rank']
+    x_train, x_test, y_train, y_test = train_test_split(x, y)
 
-    y_test = predictor.predict(x_train)
+    # Combining features and label for training
+    train_data = pd.concat([x_train, y_train], axis=1)
+
+    # Train the model
+    predictor = TabularPredictor(label='world_rank').fit(pd.DataFrame(train_data))
+
+    # Make predictions on the test set
     y_pred = predictor.predict(x_test)
     logger = logging.getLogger(__name__)
 
+    # Calculate evaluation metrics
     r2_value = r2_score(y_test, y_pred)
     mse_value = mean_squared_error(y_test, y_pred, squared=True)
     rmse_value = mean_squared_error(y_test, y_pred, squared=False)
@@ -39,14 +48,16 @@ def evaluate_model(universities: pd.DataFrame):
     logger.info("Model has MAE of %.1f on test data.", mae_value)
     logger.info("Model has MAPE of %.3f on test data.", mape_value)
 
-    # Feature importance
-    importance_list = predictor.coef_
-    importance_df = pd.DataFrame({'feature': x_test.columns, 'importance': importance_list})
-    logger.info(f"Model importance {importance_df}")
 
-    wandb.log({
-        "importance": importance_df,
-    })
+    try:
+        # Attempt to retrieve feature importance
+        importance_df = predictor.feature_importance(train_data)
+        logger.info(f"Model importance {importance_df}")
+        wandb.log({
+            "importance": importance_df,
+        })
+    except AttributeError:
+        logger.error("Feature importance could not be retrieved for this model type.")
 
     wandb.run.summary["r2"] = r2_value
     wandb.run.summary["mse"] = mse_value
@@ -55,4 +66,3 @@ def evaluate_model(universities: pd.DataFrame):
     wandb.run.summary["mape"] = mape_value
 
     close_wandb()
-    return r2_value, mse_value, rmse_value, mae_value, mape_value
