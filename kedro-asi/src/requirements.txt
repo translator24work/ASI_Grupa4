@@ -23,3 +23,5 @@ pyarrow
 autogluon
 psycopg2-binary
 streamlit
+wandb
+sqlalchemy
