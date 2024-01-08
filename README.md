@@ -32,4 +32,8 @@ my_postgres_db:
   password: your_password
   database: your_database
 ```
-## Now you should be fine to use your pipeline :)
+## If you want to deploy pipeline with StreamLit you need to do:
+```
+cd kedro-asi/
+streamlit run streamlit.py
+```
