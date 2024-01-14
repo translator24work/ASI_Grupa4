@@ -3,8 +3,8 @@ from kedro.framework.startup import bootstrap_project
 from kedro.framework.session import KedroSession
 from sqlalchemy import create_engine
 from pathlib import Path
-from faker import Faker
 import pandas as pd
+import numpy as np
 import joblib
 
 # Load your trained model
@@ -36,14 +36,13 @@ with KedroSession.create(project_path) as session:
         patents = st.number_input('Patents', value=1)
         score = st.number_input('Score', value=1)
         year = st.number_input('Year', value=1)
-
         submit_button = st.form_submit_button('Make a Prediction')
 
     if submit_button:
         # preparing data for prediction
         data_to_predict = {
             'world_rank': world_rank,
-            'institution': instituion,
+            'institution': institution,
             'country': country,
             'national_rank': national_rank,
             'quality_of_education': quality_of_education,
@@ -58,14 +57,11 @@ with KedroSession.create(project_path) as session:
             'year': year
         }
         data_to_predict_df = pd.DataFrame([data_to_predict])
-
-        # Make a prediction
         prediction = model.predict(data_to_predict_df)
-
-        # Display the prediction
         st.success(f'Prediction Score: {prediction}')
 
-def generate_synthetic_data(num_samples):
+
+def generate_synthetic_data(sample_count):
     synthetic_data = {
         "world_rank": np.random.randint(1, 500, num_samples),
         "institution": [f"Institution {i}" for i in range(num_samples)],
@@ -83,8 +79,9 @@ def generate_synthetic_data(num_samples):
         "year": np.random.randint(2000, 2024, num_samples)
     }
     return pd.DataFrame(synthetic_data)
-    
-    num_samples = st.sidebar.number_input("Enter the number of synthetic samples to generate", min_value=1, max_value=1000, value=10)
-      if st.sidebar.button('Generate Synthetic Data'):
-         synthetic_data_df = generate_synthetic_data(num_samples)
-         st.write(synthetic_data_df)
+
+
+num_samples = st.sidebar.number_input("Enter the number of synthetic samples to generate", min_value=1, max_value=1000, value=10)
+if st.sidebar.button('Generate Synthetic Data'):
+    synthetic_data_df = generate_synthetic_data(num_samples)
+    st.write(synthetic_data_df)
