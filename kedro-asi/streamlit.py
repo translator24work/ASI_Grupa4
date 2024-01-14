@@ -3,6 +3,7 @@ from kedro.framework.startup import bootstrap_project
 from kedro.framework.session import KedroSession
 from sqlalchemy import create_engine
 from pathlib import Path
+from faker import Faker
 import pandas as pd
 import joblib
 
@@ -63,3 +64,27 @@ with KedroSession.create(project_path) as session:
 
         # Display the prediction
         st.success(f'Prediction Score: {prediction}')
+
+def generate_synthetic_data(num_samples):
+    synthetic_data = {
+        "world_rank": np.random.randint(1, 500, num_samples),
+        "institution": [f"Institution {i}" for i in range(num_samples)],
+        "country": ["Country " + chr(65 + i % 26) for i in range(num_samples)],
+        "national_rank": np.random.randint(1, 100, num_samples),
+        "quality_of_education": np.random.randint(1, 100, num_samples),
+        "alumni_employment": np.random.randint(1, 100, num_samples),
+        "quality_of_faculty": np.random.randint(1, 100, num_samples),
+        "publications": np.random.randint(1, 100, num_samples),
+        "influence": np.random.randint(1, 100, num_samples),
+        "citations": np.random.randint(1, 100, num_samples),
+        "broad_impact": np.random.randint(1, 100, num_samples),
+        "patents": np.random.randint(1, 100, num_samples),
+        "score": np.random.uniform(0, 100, num_samples),
+        "year": np.random.randint(2000, 2024, num_samples)
+    }
+    return pd.DataFrame(synthetic_data)
+    
+    num_samples = st.sidebar.number_input("Enter the number of synthetic samples to generate", min_value=1, max_value=1000, value=10)
+      if st.sidebar.button('Generate Synthetic Data'):
+         synthetic_data_df = generate_synthetic_data(num_samples)
+         st.write(synthetic_data_df)
