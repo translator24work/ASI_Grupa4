@@ -2,39 +2,20 @@ import streamlit as st
 from kedro.framework.startup import bootstrap_project
 from kedro.framework.session import KedroSession
 from pathlib import Path
-from faker import Faker
 import pandas as pd
 from autogluon.tabular import TabularPredictor
 import numpy as np
 
-
-model_path = max(Path('AutogluonModels').iterdir(), key=lambda x: x.stat().st_mtime)
-fake = Faker()
 
 # Załadowanie kontekstu Kedro
 project_path = Path.cwd()
 bootstrap_project(project_path)
 
 
-def generate_synthetic_data(num_samples):
-    synthetic_data = {
-        "world_rank": np.random.randint(1, 500, num_samples),
-        "institution": [fake.company() for _ in range(num_samples)],
-        "country": [fake.country() for _ in range(num_samples)],
-        "national_rank": np.random.randint(1, 100, num_samples),
-        "quality_of_education": np.random.randint(1, 100, num_samples),
-        "alumni_employment": np.random.randint(1, 100, num_samples),
-        "quality_of_faculty": np.random.randint(1, 100, num_samples),
-        "publications": np.random.randint(1, 100, num_samples),
-        "influence": np.random.randint(1, 100, num_samples),
-        "citations": np.random.randint(1, 100, num_samples),
-        "broad_impact": np.random.randint(1, 100, num_samples),
-        "patents": np.random.randint(1, 100, num_samples),
-        "score": np.random.uniform(0, 100, num_samples),
-        "year": np.random.randint(2000, 2024, num_samples)
-    }
-    return pd.DataFrame(synthetic_data)
+FASTAPI_ENDPOINT = "http://localhost:8000/predict"
+SYNTHETIC_DATA_SCRIPT = "main.py"
 
+conf_loader = ConfigLoader(conf_source=str(Path.cwd() / 'conf'))
 
 with KedroSession.create(project_path) as session:
     st.title('Kedro pipeline')
@@ -42,6 +23,45 @@ with KedroSession.create(project_path) as session:
     if st.button('Start Kedro Pipeline'):
         session.run(pipeline_name="__default__")
         st.success('Pipeline has been started successfully!')
+
+    if st.button('Generate synthetic data'):
+        metadata = SingleTableMetadata()
+
+        # odczytanie credentials
+        conf_loader = ConfigLoader(conf_source=str(Path.cwd() / 'conf'))
+        credentials = conf_loader.get("local/credentials", "credentials.yml")
+        # Parametry połączenia z bazą danych
+        db_username = credentials["postgres"]["username"]
+        db_password = credentials["postgres"]["password"]
+        db_host = credentials["postgres"]["host"]
+        db_port = credentials["postgres"]["port"]
+        db_name = credentials["postgres"]["name"]
+
+        # Łączenie z bazą danych
+        connection = psycopg2.connect(
+            dbname=db_name,
+            user=db_username,
+            password=db_password,
+            host=db_host,
+            port=db_port
+        )
+
+        # Wczytywanie danych z bazy danych do DataFrame
+        query = "SELECT * FROM cwur.cwur"
+        real_data = pd.read_sql(query, connection)
+
+        # Zamykanie połączenia
+        connection.close()
+
+        meta_data = metadata.detect_from_dataframe(real_data)
+
+        synthesizer = SingleTablePreset(metadata, name='FAST_ML')
+        synthesizer.fit(data=real_data)
+
+        synthetic_data = synthesizer.sample(num_rows=500)
+
+        st.write('About synthetic data:')
+        st.dataframe(synthetic_data)
 
     with st.form(key='predict_form'):
         world_rank = st.number_input('World Rank', min_value=1)
@@ -79,17 +99,13 @@ with KedroSession.create(project_path) as session:
             'score': score,
             'year': year
         }
-        data_to_predict_df = pd.DataFrame([data_to_predict])
+        print(data_to_predict)
 
-        # Make a prediction
-        predictor = TabularPredictor.load(str(model_path))
-        prediction = predictor.predict(data_to_predict_df)
+        # Wysyłanie żądania do FastAPI
+        response = requests.post(FASTAPI_ENDPOINT, json=data_to_predict)
 
-        # Display the prediction
-        st.success(f'Prediction Score: {prediction.iloc[0]}')
-
-    num_samples = st.sidebar.number_input("Enter the number of synthetic samples to generate", min_value=1,
-                                          max_value=1000, value=10)
-    if st.sidebar.button('Generate Synthetic Data'):
-        synthetic_data_df = generate_synthetic_data(num_samples)
-        st.write(synthetic_data_df)
+        if response.status_code == 200:
+            prediction = response.json()
+            st.success(f"Prediction Score: {prediction}")
+        else:
+            st.error("Error while making predictions")
