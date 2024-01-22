@@ -66,3 +66,23 @@ This dataset can be useful for analyzing trends in higher education, comparing i
 - **Streamlit**: deployment
 - **Python**: primary programming language
 - **Jupyter Notebook**: interactive computing environment
+
+## Kedro architecture overview
+
+**The ```conf/``` directory, which contains configuration for the project, such as data catalog configuration, parameters, etc.**
+
+**The ```src``` directory, which contains the source code for the project, including:**
+- The ```pipelines``` directory, which contains the source code for your pipelines.
+- ```settings.py file``` contains the settings for the project, such as library component registration, custom hooks registration, etc. All the available settings are listed and explained in the project settings chapter.
+- ```pipeline_registry.py``` file defines the project pipelines, i.e. pipelines that can be run using ```kedro run --pipeline```.
+- ```__main__.py``` file serves as the main entry point of the project in package mode.
+
+**```pyproject.toml``` identifies the project root by providing project metadata, including:**
+- ```package_name```: A valid Python package name for your project package.
+- ```project_name```: A human readable name for your project.
+- ```kedro_init_version```: Kedro version with which the project was generated.
+
+![kedro_architecture](https://github.com/translator24work/ASI_Grupa4/assets/77148029/52467e02-388e-48fd-bd45-cb3856d9dcfd)
+
+
+
