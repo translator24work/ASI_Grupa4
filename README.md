@@ -4,10 +4,15 @@
 
 This project serves as an advanced exploration into the realm of artificial intelligence, concentrating on the utilization of innovative AI tools. It delves into creating synthetic data to empower machine learning models, harnesses the power of AutoML for automated model selection and optimization, evaluates model performance rigorously, and implements strategies for efficient deployment. The initiative aims to demonstrate cutting-edge techniques in AI research and application, providing a framework for robust AI system development.
 
-## Installation
+## Installation and Setup Instructions
+
 * Clone the repository to your local machine:
 ```
 git clone https://github.com/translator24work/ASI_Grupa4.git
+```
+* Install conda:
+```
+https://conda.io/projects/conda/en/latest/user-guide/install/index.html
 ```
 * Create conda environment:
 ```
@@ -59,4 +64,5 @@ This dataset can be useful for analyzing trends in higher education, comparing i
 - **Kedro**: pipeline
 - **Weights&Biases**: evaluation
 - **Streamlit**: deployment
-
+- **Python**: primary programming language
+- **Jupyter Notebook**: interactive computing environment
