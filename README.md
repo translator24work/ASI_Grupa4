@@ -1,7 +1,15 @@
 # ASI_Grupa4
 
-## Run tutorial:
-* Create conda environment:
+## Project Description
+
+This project serves as an advanced exploration into the realm of artificial intelligence, concentrating on the utilization of innovative AI tools. It delves into creating synthetic data to empower machine learning models, harnesses the power of AutoML for automated model selection and optimization, evaluates model performance rigorously, and implements strategies for efficient deployment. The initiative aims to demonstrate cutting-edge techniques in AI research and application, providing a framework for robust AI system development.
+
+## Installation
+* Clone the repository to your local machine:
+```
+git clone https://github.com/translator24work/ASI_Grupa4.git
+```
+*Create conda environment:
 ```
 conda create --name kedro-environment python=3.10 -y
 conda activate kedro-environment
@@ -37,3 +45,18 @@ my_postgres_db:
 cd kedro-asi/
 streamlit run streamlit.py
 ```
+## Dataset
+
+The dataset  "World University Rankings" contains comprehensive data on the ranking of global universities. 
+It includes various scores reflecting the quality of education and faculty, as well as the institution's international outlook and research influence. 
+This dataset can be useful for analyzing trends in higher education, comparing institutions, and understanding the factors that contribute to a university's reputation and academic standing. 
+[source: Kaggle][https://www.kaggle.com/datasets/mylesoneill/world-university-rankings/data](https://www.kaggle.com/datasets/mylesoneill/world-university-rankings/data)
+
+## Stack
+
+- **SDV**: synthetic data
+- **AutoGluon**: training and choosing best model
+- **Kedro**: pipeline
+- **Weights&Biases**: evaluation
+- **Streamlit**: deployment
+
