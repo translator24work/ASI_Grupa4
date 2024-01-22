@@ -9,7 +9,7 @@ This project serves as an advanced exploration into the realm of artificial inte
 ```
 git clone https://github.com/translator24work/ASI_Grupa4.git
 ```
-*Create conda environment:
+* Create conda environment:
 ```
 conda create --name kedro-environment python=3.10 -y
 conda activate kedro-environment
