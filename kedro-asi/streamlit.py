@@ -1,10 +1,16 @@
 import streamlit as st
 from kedro.framework.startup import bootstrap_project
 from kedro.framework.session import KedroSession
+from kedro.config import ConfigLoader
 from pathlib import Path
+import requests
 import pandas as pd
-from autogluon.tabular import TabularPredictor
+import psycopg2
 import numpy as np
+from autogluon.tabular import TabularPredictor
+#from sdv.lite import SingleTablePreset
+#from sdv.metadata import SingleTableMetadata
+#from sdv.metadata import SingleTableMetadata
 
 
 # Załadowanie kontekstu Kedro
