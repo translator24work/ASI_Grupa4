@@ -1,0 +1,54 @@
+{
+    "os": "Windows-10-10.0.22621-SP0",
+    "python": "3.9.10",
+    "heartbeatAt": "2023-12-13T17:46:58.296971",
+    "startedAt": "2023-12-13T17:46:57.340251",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "run"
+    ],
+    "state": "running",
+    "program": "-m __main__",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/translator24work/ASI_Grupa4.git",
+        "commit": "635918acf2460f4f895dd12c14b2ef8ad823c8ea"
+    },
+    "email": "bartek.perlinski1234@gmail.com",
+    "root": "C:/KEDRO-ASI",
+    "host": "BARTEK-DESKTOP",
+    "username": "Bart\u0142omiej",
+    "executable": "C:\\Users\\Bart\u0142omiej\\pajton\\python.exe",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 3801.0,
+        "min": 0.0,
+        "max": 3801.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3801.0,
+            "min": 0.0,
+            "max": 3801.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 448.53425216674805,
+            "used": 304.3976745605469
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1660",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1660",
+            "memory_total": 6442450944
+        }
+    ],
+    "memory": {
+        "total": 15.853527069091797
+    }
+}
