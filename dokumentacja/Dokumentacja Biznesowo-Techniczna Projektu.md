@@ -16,9 +16,9 @@ Głównymi zaletami produktu są jego zdolność do przetwarzania dużych ilośc
 
 ## Jak Korzystać z Produktu
 
-**Instalacja i Konfiguracja:**
+### Instalacja i Konfiguracja
 
-Sklonuj repozytorium na komputer lokalny:
+**Sklonuj repozytorium na komputer lokalny:**
 ```
 git clone https://github.com/translator24work/ASI_Grupa4.git
 ```
@@ -69,7 +69,6 @@ streamlit run streamlit.py
 ```
 
 ## Funkcjonalności
-### Główne Funkcje
 
 #### Analiza Danych i Predykcja: 
 Wykorzystanie technik Machine Learningu do analizy danych i dokonywania predykcji.
