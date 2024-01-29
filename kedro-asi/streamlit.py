@@ -19,7 +19,6 @@ synthetic_data_amount = st.sidebar.number_input("Enter the number of synthetic s
 
 if st.button('Start Kedro Pipeline'):
     response = requests.get(RUN_PIPELINE_URL)
-    st.success('Kedro pipeline has been started')
     if response.status_code == 200:
         st.success('Kedro pipeline ended successfully!')
     else:
@@ -99,10 +98,4 @@ if st.sidebar.button('Generate Synthetic data'):
         st.write(response)
 
 
-if st.sidebar.button('Make Prediction for synthetic data'):
-    response = requests.get(PREDICT_URL_SYNTHETIC)
-    if response.status_code == 200:
-        prediction = response.json()
-        st.success(f"Prediction for synthetic data: {prediction['prediction']}")
-    else:
-        st.error('There was some error while making prediction for synthetic data')
+# TODO: in future maybe let user choose row from synthetic data to make prediction on that.

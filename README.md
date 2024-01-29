@@ -45,7 +45,7 @@ my_postgres_db:
   password: your_password
   database: your_database
 ```
-## If you want to deploy pipeline, you need to run:
+## If you want to deploy pipeline, you need to run (in two separated consoles):
 * Frontend Application `streamlit.py`:
 ```
 cd kedro-asi/
