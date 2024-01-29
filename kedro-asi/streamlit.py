@@ -8,10 +8,12 @@ SYNTHETIC_DATA_URL = "http://localhost:8000/synthetic"
 RUN_PIPELINE_URL = "http://localhost:8000/run"
 PREDICT_URL = "http://localhost:8000/predict"
 PREDICT_URL_SYNTHETIC = "http://localhost:8000/predictSynthetic"
+KEDRO_LOGS_URL = "http://localhost:8000/logs"
 
 
 st.title('Streamlit app designed for working with Kedro pipelines ')
-
+st.markdown('Application uses Kedro pipeline to predict result or train model for problem described under this url: '
+        'https://www.kaggle.com/datasets/mylesoneill/world-university-rankings')
 synthetic_data_amount = st.sidebar.number_input("Enter the number of synthetic samples to generate", min_value=1,
                                           max_value=1000, value=10)
 
@@ -23,7 +25,19 @@ if st.button('Start Kedro Pipeline'):
     else:
         st.error('There was some error while running Kedro pipeline')
 
+if st.button('See Kedro logs'):
+    response = requests.get(KEDRO_LOGS_URL)
+    if response.status_code == 200:
+        st.markdown('Below you can see logs from kedro pipeline. If you want to refresh logs, click button for viewing '
+                'logs again.')
+        logs_as_json = response.json()
+        st.text_area('Logs', logs_as_json['logs'], height=300)
+    else:
+        st.error('Logs are not available due to some error, maybe you did not started your pipeline yet?')
 
+
+st.header('Prediction for Your own data')
+st.text('Below form represents data that will be used for prediction')
 with st.form(key='predict_form'):
     world_rank = st.number_input('World Rank', min_value=1)
     institution = st.text_input('Institution', value="Harvard University")

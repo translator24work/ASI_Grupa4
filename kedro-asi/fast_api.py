@@ -26,6 +26,17 @@ async def run_pipeline():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get('/logs')
+async def see_kedro_logs():
+    try:
+        log_file_path = Path.cwd() / 'info.log'
+        with open(log_file_path, 'r') as log_file:
+            log_contents = log_file.read()
+            return {"logs": log_contents}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.post('/predict')
 async def make_prediction(request: Request):
     try:
