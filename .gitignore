@@ -156,5 +156,5 @@ kedro-asi/site
 # mypy
 kedro-asi/.mypy_cache/
 
-kedro-asi/wandb
-kedro-asi/AutogluonModels
+kedro-asi/wandb/
+kedro-asi/AutogluonModels/
