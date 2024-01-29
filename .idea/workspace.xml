@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdc3d20f-ed35-4895-91ed-598cbdea830d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/src/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/streamlit.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/streamlit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,7 @@
       <workItem from="1702937481549" duration="5350000" />
       <workItem from="1706462135923" duration="4624000" />
       <workItem from="1706478187709" duration="6369000" />
-      <workItem from="1706532755949" duration="3726000" />
+      <workItem from="1706532755949" duration="4528000" />
     </task>
     <servers />
   </component>

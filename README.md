@@ -45,11 +45,20 @@ my_postgres_db:
   password: your_password
   database: your_database
 ```
-## If you want to deploy pipeline with StreamLit you need to do:
+## If you want to deploy pipeline, you need to run:
+* Frontend Application `streamlit.py`:
 ```
 cd kedro-asi/
 streamlit run streamlit.py
 ```
+* Backend Application `fast_api.py`:
+```
+cd kedro-asi/
+uvicorn fast_api:app
+```
+### Default url's for applications:
+* Frontend application will be available under http://localhost:8501 url
+* Backend application will be available under http://127.0.0.1:8000 url
 ## Dataset
 
 The dataset  "World University Rankings" contains comprehensive data on the ranking of global universities. 
