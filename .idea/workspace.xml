@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fdc3d20f-ed35-4895-91ed-598cbdea830d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/model_training/nodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/src/kedro_asi/pipelines/model_training/nodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kedro-asi/src/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/src/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kedro-asi/stats.json" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/stats.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kedro-asi/streamlit.py" beforeDir="false" afterPath="$PROJECT_DIR$/kedro-asi/streamlit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint6" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,6 +64,9 @@
       <workItem from="1702762333605" duration="4762000" />
       <workItem from="1702843845855" duration="4085000" />
       <workItem from="1702937481549" duration="5350000" />
+      <workItem from="1706462135923" duration="4624000" />
+      <workItem from="1706478187709" duration="6369000" />
+      <workItem from="1706532755949" duration="3726000" />
     </task>
     <servers />
   </component>
