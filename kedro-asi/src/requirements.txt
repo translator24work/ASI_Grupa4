@@ -25,4 +25,5 @@ psycopg2-binary
 streamlit
 wandb
 sqlalchemy
-Faker
+sdv
+uvicorn
